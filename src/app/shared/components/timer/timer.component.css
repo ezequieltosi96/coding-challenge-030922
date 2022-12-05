@@ -1,0 +1,61 @@
+.pie {
+    width: 50px;
+    height: 50px;
+    font-size: 500%;
+    position: relative;
+    border-radius: 50%;
+    display: inline-block;
+    --color: rgb(95, 95, 95);
+}
+
+.pie-no-animated {
+    width: 50px;
+    height: 50px;
+    font-size: 500%;
+    position: relative;
+    border-radius: 50%;
+    display: inline-block;
+    background-color: var(--color);
+    --color: rgb(95, 95, 95);
+}
+
+.pie::before,
+.pie::after {
+    content: "";
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    border-radius: 0.5em 0 0 0.5em;
+    transform-origin: center right;
+    animation-iteration-count: infinite;
+    animation-duration: 5s;
+}
+
+.pie::before {
+    z-index: 1;
+    background-color: white;
+    animation-name: mask;
+    animation-timing-function: steps(1);
+}
+
+.pie::after {
+    background-color: var(--color);
+    animation-name: rotate;
+    animation-timing-function: linear;
+}
+
+@keyframes rotate {
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+@keyframes mask {
+
+    50%,
+    100% {
+        background-color: var(--color);
+        transform: rotate(0.5turn);
+    }
+}
